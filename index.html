@@ -9,16 +9,35 @@
 </head>
 <body>
   <div id="root">
-    <img v-bind:src="img" v-bind:alt="name">
+    <img v-on:mouseover="toggleShowPrices" v-on:mouseout="toggleShowPrices" v-bind:src="img" v-bind:alt="name">
     <h1>{{ name }}
+      <!-- Conditionals -->
       <span v-if="changePercent > 0">💚</span>
       <span v-else-if="changePercent < 0">🙁</span>
       <span v-else>😎</span>
 
+      <!-- Only show if true -->
       <span v-show="changePercent > 0">💚</span>
       <span v-show="changePercent < 0">🙁</span>
       <span v-show="changePercent === 0">😎</span>
     </h1>
+
+    <!-- Rendering an array of elements: i represents indice -->
+    <ul>
+      <li v-for="(p , i) in prices" v-bind:key="i">
+        {{ i }} - {{ p }}
+      </li>
+    </ul>
+
+    <!-- Handling events in vue -->
+    <span v-on:click="toggleShowPrices">{{ showPrices ? 'Hidde Prices' : 'Show Prices' }}</span>
+
+    <!-- Rendering an array of objects: i represents indice -->
+    <ul v-show="showPrices">
+      <li v-for="(p, i) in pricesWithDays" v-bind:key="i">
+        {{ i }} - {{ p.day }} => {{ p.value }}
+      </li>
+    </ul>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="./js/index.js"></script>

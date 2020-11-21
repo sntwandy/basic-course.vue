@@ -11,7 +11,7 @@
   <div id="root" :style="{background: '#' + color}">
     <!-- Event mouse over -->
     <img v-on:mouseover="toggleShowPrices" v-on:mouseout="toggleShowPrices" v-bind:src="img" v-bind:alt="name">
-    <h1 v-bind:class="changePercent > 0 ? 'green' : changePercent === 0 ? 'orange' : 'red' ">{{ name }}
+    <h1 v-bind:class="changePercent > 0 ? 'green' : changePercent === 0 ? 'orange' : 'red' ">{{ title }}
       <!-- Conditionals -->
       <span v-if="changePercent > 0">💚</span>
       <span v-else-if="changePercent < 0">🙁</span>
@@ -29,6 +29,9 @@
         {{ i }} - {{ p }}
       </li>
     </ul>
+
+    <input type="number" v-model="value">
+    <span style="display: block;" :style="{color: '#' + fontColor}">{{ convertedValue }}</span>
 
     <!-- Handling events in vue -->
     <span v-bind:style="{color: '#' + fontColor}" v-on:click="toggleShowPrices">{{ showPrices ? 'Hidde Prices' : 'Show Prices' }}</span>

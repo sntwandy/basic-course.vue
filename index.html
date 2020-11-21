@@ -8,9 +8,10 @@
   <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
-  <div id="root">
+  <div id="root" :style="{background: '#' + color}">
+    <!-- Event mouse over -->
     <img v-on:mouseover="toggleShowPrices" v-on:mouseout="toggleShowPrices" v-bind:src="img" v-bind:alt="name">
-    <h1>{{ name }}
+    <h1 v-bind:class="changePercent > 0 ? 'green' : changePercent === 0 ? 'orange' : 'red' ">{{ name }}
       <!-- Conditionals -->
       <span v-if="changePercent > 0">💚</span>
       <span v-else-if="changePercent < 0">🙁</span>
@@ -24,17 +25,17 @@
 
     <!-- Rendering an array of elements: i represents indice -->
     <ul>
-      <li v-for="(p , i) in prices" v-bind:key="i">
+      <li v-bind:style="{color: '#' + fontColor}" v-for="(p , i) in prices" v-bind:key="i">
         {{ i }} - {{ p }}
       </li>
     </ul>
 
     <!-- Handling events in vue -->
-    <span v-on:click="toggleShowPrices">{{ showPrices ? 'Hidde Prices' : 'Show Prices' }}</span>
+    <span v-bind:style="{color: '#' + fontColor}" v-on:click="toggleShowPrices">{{ showPrices ? 'Hidde Prices' : 'Show Prices' }}</span>
 
     <!-- Rendering an array of objects: i represents indice -->
     <ul v-show="showPrices">
-      <li v-for="(p, i) in pricesWithDays" v-bind:key="i">
+      <li class="uppercase" v-bind:class="{orange: p.value === actualPrice, green: p.value > actualPrice, red: p.value < actualPrice}" v-for="(p, i) in pricesWithDays" v-bind:key="i">
         {{ i }} - {{ p.day }} => {{ p.value }}
       </li>
     </ul>

@@ -44,12 +44,25 @@ Vue.component("CoinsDetails", {
       <input type="number" v-model="value">
       <span style="display: block;" :style="{color: '#' + coins.fontColor}">{{ convertedValue }}</span>
 
+      <slot name="text" />
+      <slot name="link" />
+
       <ul v-show="showPrices">
         <li class="uppercase" v-bind:class="{orange: p.value === coins.actualPrice, green: p.value > coins.actualPrice, red: p.value < coins.actualPrice}" v-for="(p, i) in coins.pricesWithDays" v-bind:key="i">
           {{ i }} - {{ p.day }} => {{ p.value }}
         </li>
       </ul>
     </div>
+  `,
+});
+
+// Link component
+Vue.component("link-page", {
+  props: ["url"],
+  template: `
+    <a v-bind:href="this.url" target="_blank">
+      <slot />
+    </a>
   `,
 });
 

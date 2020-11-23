@@ -10,6 +10,12 @@
 <body>
   <div id="root" :style="{background: '#' + color}">
     <coins-details v-on:change-color="updateColor" v-bind:coins='btc' />
+    <template v-slot:text>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis totam, atque est debitis maiores, placeat ducimus ea nemo quidem beatae, ut nihil pariatur quod perspiciatis deserunt necessitatibus. Quaerat, laboriosam ullam.</p>
+    </template>
+    <template v-slot:link>
+      <link-page url="https://vuejs.org">Click on me!</link-page>
+    </template>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="./js/index.js"></script>

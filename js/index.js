@@ -24,6 +24,12 @@ Vue.component("CoinsDetails", {
       return this.value / this.coins.actualPrice;
     },
   },
+  created() {
+    console.log("Created from coins-detail...");
+  },
+  mounted() {
+    console.log("Updated from coins-detail...");
+  },
   template: `
     <div>
       <img v-on:mouseover="toggleShowPrices"                v-on:mouseout="toggleShowPrices" v-bind:src="coins.img" v-bind:alt="coins.name" />
@@ -89,6 +95,12 @@ new Vue({
       },
       color: "f4f4f4",
     };
+  },
+  created() {
+    console.log("Created...");
+  },
+  mounted() {
+    console.log("Updated...");
   },
   methods: {
     updateColor(color) {

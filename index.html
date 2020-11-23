@@ -9,7 +9,7 @@
 </head>
 <body>
   <div id="root" :style="{background: '#' + color}">
-    <coins-details v-bind:coins='btc' />
+    <coins-details v-on:change-color="updateColor" v-bind:coins='btc' />
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="./js/index.js"></script>

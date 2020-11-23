@@ -9,6 +9,7 @@ Vue.component("CoinsDetails", {
   methods: {
     toggleShowPrices() {
       this.showPrices = !this.showPrices;
+      this.$emit("change-color", this.showPrices ? "FF96C8" : "3D3D3D");
     },
   },
   computed: {
@@ -71,16 +72,15 @@ new Vue({
           { day: "Sabado", value: 10000 },
           { day: "Domingo", value: 18721 },
         ],
-        color: "f4f4f4",
         fontColor: "4f4f4f",
       },
+      color: "f4f4f4",
     };
   },
-  // methods: {
-  //   toggleShowPrices() {
-  //     this.showPrices = !this.showPrices;
-  //     this.color = this.color.split("").reverse().join("");
-  //     this.fontColor = this.fontColor.split("").reverse().join("");
-  //   },
-  // },
+  methods: {
+    updateColor(color) {
+      this.color = color || this.color.split("").reverse().join("");
+      this.btc.fontColor = this.btc.fontColor.split("").reverse().join("");
+    },
+  },
 });
